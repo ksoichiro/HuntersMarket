@@ -100,7 +100,7 @@ public class MarketGenerator {
         BlockPos spawnPos = new BlockPos(
                 placePos.getX() + size.getX() / 2,
                 placePos.getY() + FLOOR_HEIGHT,
-                placePos.getZ() + size.getZ() / 2
+                placePos.getZ() + size.getZ() / 4
         );
         level.setDefaultSpawnPos(spawnPos, 0);
 
