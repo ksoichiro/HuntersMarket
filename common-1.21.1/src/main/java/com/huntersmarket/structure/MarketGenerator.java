@@ -31,8 +31,8 @@ public class MarketGenerator {
     private static final int CLEANUP_EXTEND = 5;
     private static final int SEARCH_RADIUS = 48;
     private static final int SEARCH_STEP = 4;
-    // Y offset from structure origin to player foot level (merchants are at Y=2 in the template)
-    private static final int FLOOR_HEIGHT = 2;
+    // Y offset from structure origin to player foot level
+    private static final int FLOOR_HEIGHT = 1;
     private static final int PLAYERS_PER_CHEST = 2;
 
     /**
