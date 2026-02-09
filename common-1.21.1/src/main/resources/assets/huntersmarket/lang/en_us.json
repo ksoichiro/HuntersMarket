@@ -1,0 +1,21 @@
+{
+  "itemGroup.huntersmarket": "Hunter's Market",
+  "block.huntersmarket.game_start_block": "Game Start Block",
+  "block.huntersmarket.game_reset_block": "Game Reset Block",
+  "message.huntersmarket.game_started": "Start!",
+  "message.huntersmarket.already_in_progress": "The game is already in progress.",
+  "message.huntersmarket.countdown_in_progress": "The game is about to start.",
+  "message.huntersmarket.game_ended_reset_required": "The game has ended. Please reset to start a new game.",
+  "message.huntersmarket.game_not_started": "The game has not started yet.",
+  "message.huntersmarket.game_reset": "The game has been reset.",
+  "message.huntersmarket.confirm_reset": "Click again within 5 seconds to confirm reset.",
+  "entity.huntersmarket.merchant": "Merchant",
+  "message.huntersmarket.not_sellable": "This item cannot be sold.",
+  "message.huntersmarket.sold": "+%s gold",
+  "message.huntersmarket.winner": "%s has reached the target! Game over!",
+  "message.huntersmarket.winner_title": "Game Over!",
+  "message.huntersmarket.winner_subtitle": "%s wins!",
+  "message.huntersmarket.goal_reached_title": "Goal Reached!",
+  "message.huntersmarket.goal_reached_subtitle": "%s reached the goal!",
+  "hud.huntersmarket.market_marker": "Market"
+}

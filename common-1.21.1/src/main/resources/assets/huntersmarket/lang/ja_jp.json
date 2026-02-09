@@ -1,0 +1,21 @@
+{
+  "itemGroup.huntersmarket": "ハンターズマーケット",
+  "block.huntersmarket.game_start_block": "ゲーム開始ブロック",
+  "block.huntersmarket.game_reset_block": "ゲームリセットブロック",
+  "message.huntersmarket.game_started": "スタート！",
+  "message.huntersmarket.already_in_progress": "ゲームはすでに進行中です。",
+  "message.huntersmarket.countdown_in_progress": "まもなくゲームが開始します。",
+  "message.huntersmarket.game_ended_reset_required": "ゲームは終了しています。リセットして新しいゲームを開始してください。",
+  "message.huntersmarket.game_not_started": "ゲームがまだ開始されていません。",
+  "message.huntersmarket.game_reset": "ゲームがリセットされました。",
+  "message.huntersmarket.confirm_reset": "リセットするには5秒以内にもう一度クリックしてください。",
+  "entity.huntersmarket.merchant": "商人",
+  "message.huntersmarket.not_sellable": "このアイテムは売却できません。",
+  "message.huntersmarket.sold": "+%s ゴールド",
+  "message.huntersmarket.winner": "%s が目標達成！ゲーム終了！",
+  "message.huntersmarket.winner_title": "ゲーム終了！",
+  "message.huntersmarket.winner_subtitle": "%s の勝利！",
+  "message.huntersmarket.goal_reached_title": "目標達成！",
+  "message.huntersmarket.goal_reached_subtitle": "%s が目標達成！",
+  "hud.huntersmarket.market_marker": "マーケット"
+}
