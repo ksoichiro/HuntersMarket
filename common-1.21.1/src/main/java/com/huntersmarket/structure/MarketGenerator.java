@@ -33,7 +33,7 @@ public class MarketGenerator {
     private static final int SEARCH_STEP = 4;
     // Y offset from structure origin to player foot level (merchants are at Y=2 in the template)
     private static final int FLOOR_HEIGHT = 2;
-    private static final int PLAYER_COUNT = 8;
+    private static final int PLAYERS_PER_CHEST = 2;
 
     /**
      * Place the market NBT structure at the best location near the given X/Z.
@@ -170,7 +170,7 @@ public class MarketGenerator {
     }
 
     /**
-     * Find the first large chest in the structure and fill it with equipment for all players.
+     * Find all large chests in the structure and fill each with equipment for 2 players.
      */
     private static void fillChest(ServerLevel level, BlockPos placePos, Vec3i size) {
         for (int x = 0; x < size.getX(); x++) {
@@ -180,9 +180,8 @@ public class MarketGenerator {
                     BlockState state = level.getBlockState(pos);
                     if (state.getBlock() instanceof ChestBlock chestBlock) {
                         Container container = ChestBlock.getContainer(chestBlock, state, level, pos, true);
-                        if (container != null && container.getContainerSize() > 27) {
-                            fillChestWithEquipment(level, container);
-                            return;
+                        if (container != null && container.getContainerSize() > 27 && container.isEmpty()) {
+                            fillChestWithEquipment(container);
                         }
                     }
                 }
@@ -190,15 +189,15 @@ public class MarketGenerator {
         }
     }
 
-    private static void fillChestWithEquipment(ServerLevel level, Container container) {
+    private static void fillChestWithEquipment(Container container) {
         int slot = 0;
-        for (int i = 0; i < PLAYER_COUNT; i++) {
+        for (int i = 0; i < PLAYERS_PER_CHEST; i++) {
             container.setItem(slot++, new ItemStack(Items.IRON_SWORD));
         }
-        for (int i = 0; i < PLAYER_COUNT; i++) {
+        for (int i = 0; i < PLAYERS_PER_CHEST; i++) {
             container.setItem(slot++, new ItemStack(Items.SHIELD));
         }
-        for (int i = 0; i < PLAYER_COUNT; i++) {
+        for (int i = 0; i < PLAYERS_PER_CHEST; i++) {
             container.setItem(slot++, new ItemStack(Items.BREAD, 64));
         }
     }
