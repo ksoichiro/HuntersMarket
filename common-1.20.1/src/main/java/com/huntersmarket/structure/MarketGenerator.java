@@ -70,6 +70,9 @@ public class MarketGenerator {
             minPlacementY = level.getSeaLevel();
         }
 
+        // Ensure the structure is never placed below sea level
+        minPlacementY = Math.max(minPlacementY, level.getSeaLevel());
+
         BlockPos placePos = new BlockPos(bestOrigin.getX(), minPlacementY, bestOrigin.getZ());
 
         // Place the structure
