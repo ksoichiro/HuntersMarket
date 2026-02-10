@@ -22,10 +22,11 @@ Sell your monster loot to the merchant for gold:
 
 | Item | Price | Item | Price |
 |------|-------|------|-------|
-| Rotten Flesh | 10 | Bone | 10 |
-| Arrow | 5 | String | 5 |
-| Spider Eye | 15 | Gunpowder | 15 |
-| Ender Pearl | 20 | Glowstone Dust | 20 |
+| Rotten Flesh | 50 | Bone | 50 |
+| Arrow | 25 | String | 25 |
+| Spider Eye | 75 | Gunpowder | 75 |
+| Ender Pearl | 100 | Glowstone Dust | 100 |
+| Trident | 500 | | |
 
 ### 📊 Real-Time HUD
 - **Earnings Display**: Track your current gold with a coin icon

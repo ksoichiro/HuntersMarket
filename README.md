@@ -16,6 +16,16 @@ Hunt monsters, collect loot, sell to the merchant, and be the first to earn 10,0
 - **Real-Time HUD**: Track your earnings, play time, rankings, and market direction on screen
 - **Multiplayer Support**: Designed for competitive multiplayer sessions with rankings and finish notifications
 
+## Price List
+
+| Item | Price | Item | Price |
+|------|-------|------|-------|
+| Rotten Flesh | 50 | Bone | 50 |
+| Arrow | 25 | String | 25 |
+| Spider Eye | 75 | Gunpowder | 75 |
+| Ender Pearl | 100 | Glowstone Dust | 100 |
+| Trident | 500 | | |
+
 ## Supported Versions
 
 | Minecraft | Mod Loader | Dependencies |
