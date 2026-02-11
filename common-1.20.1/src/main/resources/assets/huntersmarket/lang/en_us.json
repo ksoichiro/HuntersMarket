@@ -17,5 +17,5 @@
   "message.huntersmarket.winner_subtitle": "%s wins!",
   "message.huntersmarket.goal_reached_title": "Goal Reached!",
   "message.huntersmarket.goal_reached_subtitle": "%s reached the goal!",
-  "hud.huntersmarket.market_marker": "Market"
+  "hud.huntersmarket.market_marker": "Hunter's Market"
 }
