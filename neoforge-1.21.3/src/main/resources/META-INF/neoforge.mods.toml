@@ -1,0 +1,30 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "huntersmarket"
+version = "${version}"
+displayName = "Hunter's Market"
+description = '''Compete to earn 10,000 gold by mining and selling ores!'''
+
+[[dependencies.huntersmarket]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.3,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.huntersmarket]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.3,1.21.4)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.huntersmarket]]
+modId = "architectury"
+type = "required"
+versionRange = "[14,)"
+ordering = "AFTER"
+side = "BOTH"
