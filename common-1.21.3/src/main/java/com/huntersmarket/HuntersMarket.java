@@ -6,6 +6,7 @@ import com.huntersmarket.event.GameTickHandler;
 import com.huntersmarket.event.PlayerSpawnHandler;
 import com.huntersmarket.hud.GameHudOverlay;
 import com.huntersmarket.network.GameStateSyncPacket;
+import com.huntersmarket.state.ClientGameState;
 import com.huntersmarket.registry.ModBlocks;
 import com.huntersmarket.registry.ModCreativeTab;
 import com.huntersmarket.registry.ModEntityTypes;
@@ -13,6 +14,7 @@ import com.huntersmarket.registry.ModItems;
 import com.huntersmarket.state.GameStateManager;
 import com.huntersmarket.structure.MarketGenerator;
 import dev.architectury.event.events.client.ClientGuiEvent;
+import dev.architectury.event.events.client.ClientPlayerEvent;
 import dev.architectury.event.events.common.LifecycleEvent;
 import dev.architectury.event.events.common.PlayerEvent;
 import dev.architectury.event.events.common.TickEvent;
@@ -69,5 +71,9 @@ public class HuntersMarket {
         EntityModelLayerRegistry.register(MerchantModel.LAYER_LOCATION, MerchantModel::createBodyLayer);
         EntityRendererRegistry.register(ModEntityTypes.MERCHANT, MerchantEntityRenderer::new);
         ClientGuiEvent.RENDER_HUD.register(GameHudOverlay::render);
+        ClientPlayerEvent.CLIENT_PLAYER_QUIT.register(player -> {
+            ClientGameState.reset();
+            GameHudOverlay.clearFloatingTexts();
+        });
     }
 }
