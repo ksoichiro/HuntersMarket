@@ -201,6 +201,12 @@ public class MarketGenerator {
             container.setItem(slot++, new ItemStack(Items.SHIELD));
         }
         for (int i = 0; i < PLAYERS_PER_CHEST; i++) {
+            container.setItem(slot++, new ItemStack(Items.BOW));
+        }
+        for (int i = 0; i < PLAYERS_PER_CHEST; i++) {
+            container.setItem(slot++, new ItemStack(Items.ARROW, 64));
+        }
+        for (int i = 0; i < PLAYERS_PER_CHEST; i++) {
             container.setItem(slot++, new ItemStack(Items.BREAD, 64));
         }
     }
