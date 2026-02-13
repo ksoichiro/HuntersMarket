@@ -6,6 +6,7 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -74,6 +75,11 @@ public class MarketGenerator {
         minPlacementY = Math.max(minPlacementY, level.getSeaLevel());
 
         BlockPos placePos = new BlockPos(bestOrigin.getX(), minPlacementY, bestOrigin.getZ());
+
+        // Remove mobs from the area to prevent them from being trapped
+        // inside blocks during structure placement.
+        // Uses discard() to remove silently without drops or death effects.
+        removeMobs(level, placePos, size);
 
         // Place the structure
         StructurePlaceSettings settings = new StructurePlaceSettings()
@@ -155,6 +161,21 @@ public class MarketGenerator {
         }
 
         return bestPos;
+    }
+
+    private static void removeMobs(ServerLevel level, BlockPos placePos, Vec3i size) {
+        AABB area = new AABB(
+                placePos.getX() - CLEANUP_EXTEND,
+                placePos.getY() - FILL_DEPTH,
+                placePos.getZ() - CLEANUP_EXTEND,
+                placePos.getX() + size.getX() + CLEANUP_EXTEND,
+                placePos.getY() + size.getY() + FILL_DEPTH,
+                placePos.getZ() + size.getZ() + CLEANUP_EXTEND);
+
+        List<Mob> mobs = level.getEntitiesOfClass(Mob.class, area);
+        for (Mob mob : mobs) {
+            mob.discard();
+        }
     }
 
     private static void removeDroppedItems(ServerLevel level, BlockPos placePos, Vec3i size) {
