@@ -20,12 +20,14 @@ Thumbs.db
 
 # Minecraft run directories
 run/
+run-prod/
 runs/
 logs/
 
 # Java
 *.class
 hs_err_pid*
+*.jar.log
 
 # Architectury
 .architectury-transformer/
