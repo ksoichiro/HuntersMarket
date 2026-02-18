@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "huntersmarket:block/game_start_block"
+    }
+  }
+}
