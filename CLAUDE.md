@@ -4,13 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Hunter's Market is a Minecraft mod where players compete to earn 10,000 gold by mining and selling ores to an NPC merchant. Built with **Architectury** for cross-platform support (Fabric + NeoForge/Forge), targeting Minecraft 1.21.8 (Java 21), 1.21.7 (Java 21), 1.21.6 (Java 21), 1.21.5 (Java 21), 1.21.4 (Java 21), 1.21.3 (Java 21), 1.21.1 (Java 21), and 1.20.1 (Java 17).
+Hunter's Market is a Minecraft mod where players compete to earn 10,000 gold by mining and selling ores to an NPC merchant. Built with **Architectury** for cross-platform support (Fabric + NeoForge/Forge), targeting Minecraft 1.21.9 (Java 21), 1.21.8 (Java 21), 1.21.7 (Java 21), 1.21.6 (Java 21), 1.21.5 (Java 21), 1.21.4 (Java 21), 1.21.3 (Java 21), 1.21.1 (Java 21), and 1.20.1 (Java 17).
 
 ## Build Commands
 
 ```bash
 # Standard build (default target: 1.21.1)
 ./gradlew build -Ptarget_mc_version=1.21.1
+
+# Build for 1.21.9
+./gradlew build -Ptarget_mc_version=1.21.9
 
 # Build for 1.21.8
 ./gradlew build -Ptarget_mc_version=1.21.8
@@ -37,6 +40,8 @@ Hunter's Market is a Minecraft mod where players compete to earn 10,000 gold by 
 ./gradlew buildAll
 
 # Platform-specific builds
+./gradlew :fabric:build -Ptarget_mc_version=1.21.9
+./gradlew :neoforge:build -Ptarget_mc_version=1.21.9
 ./gradlew :fabric:build -Ptarget_mc_version=1.21.8
 ./gradlew :neoforge:build -Ptarget_mc_version=1.21.8
 ./gradlew :fabric:build -Ptarget_mc_version=1.21.7
@@ -60,7 +65,7 @@ Hunter's Market is a Minecraft mod where players compete to earn 10,000 gold by 
 ./gradlew collectJars
 ```
 
-Note: Tests are excluded from builds (`-x test`). The build system auto-downloads the correct JDK via Foojay toolchain resolver (JDK 21 for 1.21.8/1.21.7/1.21.6/1.21.5/1.21.4/1.21.3/1.21.1, JDK 17 for 1.20.1).
+Note: Tests are excluded from builds (`-x test`). The build system auto-downloads the correct JDK via Foojay toolchain resolver (JDK 21 for 1.21.9/1.21.8/1.21.7/1.21.6/1.21.5/1.21.4/1.21.3/1.21.1, JDK 17 for 1.20.1).
 
 ## Architecture
 
@@ -69,6 +74,7 @@ Note: Tests are excluded from builds (`-x test`). The build system auto-download
 The project uses Architectury's pattern to share code between Fabric and NeoForge/Forge:
 
 - **`common-shared/`** — Platform-independent shared code (no build.gradle, included as srcDir by common module). Base package: `com.huntersmarket`
+- **`common-1.21.9/`** — Version-specific common module for MC 1.21.9 (Architectury common). Includes `common-shared` sources via `srcDir`.
 - **`common-1.21.8/`** — Version-specific common module for MC 1.21.8 (Architectury common). Includes `common-shared` sources via `srcDir`.
 - **`common-1.21.7/`** — Version-specific common module for MC 1.21.7 (Architectury common). Includes `common-shared` sources via `srcDir`.
 - **`common-1.21.6/`** — Version-specific common module for MC 1.21.6 (Architectury common). Includes `common-shared` sources via `srcDir`.
@@ -78,6 +84,7 @@ The project uses Architectury's pattern to share code between Fabric and NeoForg
 - **`common-1.21.1/`** — Version-specific common module for MC 1.21.1 (Architectury common). Includes `common-shared` sources via `srcDir`.
 - **`common-1.20.1/`** — Version-specific common module for MC 1.20.1. Includes `common-shared` sources via `srcDir`.
 - **`fabric-base/`** — Fabric platform base code (no build.gradle, included as srcDir by fabric module)
+- **`fabric-1.21.9/`** — Fabric platform build module for MC 1.21.9. Maps to Gradle project `:fabric`.
 - **`fabric-1.21.8/`** — Fabric platform build module for MC 1.21.8. Maps to Gradle project `:fabric`.
 - **`fabric-1.21.7/`** — Fabric platform build module for MC 1.21.7. Maps to Gradle project `:fabric`.
 - **`fabric-1.21.6/`** — Fabric platform build module for MC 1.21.6. Maps to Gradle project `:fabric`.
@@ -87,6 +94,7 @@ The project uses Architectury's pattern to share code between Fabric and NeoForg
 - **`fabric-1.21.1/`** — Fabric platform build module for MC 1.21.1. Maps to Gradle project `:fabric`.
 - **`fabric-1.20.1/`** — Fabric platform build module for MC 1.20.1. Maps to Gradle project `:fabric`.
 - **`neoforge-base/`** — NeoForge platform base code (no build.gradle, included as srcDir by neoforge module)
+- **`neoforge-1.21.9/`** — NeoForge platform build module for MC 1.21.9. Maps to Gradle project `:neoforge`.
 - **`neoforge-1.21.8/`** — NeoForge platform build module for MC 1.21.8. Maps to Gradle project `:neoforge`.
 - **`neoforge-1.21.7/`** — NeoForge platform build module for MC 1.21.7. Maps to Gradle project `:neoforge`.
 - **`neoforge-1.21.6/`** — NeoForge platform build module for MC 1.21.6. Maps to Gradle project `:neoforge`.
@@ -100,6 +108,7 @@ The project uses Architectury's pattern to share code between Fabric and NeoForg
 ### Module Resolution in settings.gradle
 
 Gradle project names differ from directory names. `settings.gradle` dynamically resolves modules based on `target_mc_version`:
+- For 1.21.9: `:common-1.21.9` → `common-1.21.9/`, `:fabric` → `fabric-1.21.9/`, `:neoforge` → `neoforge-1.21.9/`
 - For 1.21.8: `:common-1.21.8` → `common-1.21.8/`, `:fabric` → `fabric-1.21.8/`, `:neoforge` → `neoforge-1.21.8/`
 - For 1.21.7: `:common-1.21.7` → `common-1.21.7/`, `:fabric` → `fabric-1.21.7/`, `:neoforge` → `neoforge-1.21.7/`
 - For 1.21.6: `:common-1.21.6` → `common-1.21.6/`, `:fabric` → `fabric-1.21.6/`, `:neoforge` → `neoforge-1.21.6/`
@@ -111,10 +120,10 @@ Gradle project names differ from directory names. `settings.gradle` dynamically 
 
 ### Multi-Version Support
 
-- Version properties in `props/<version>.properties` (`1.20.1`, `1.21.1`, `1.21.3`, `1.21.4`, `1.21.5`, `1.21.6`, `1.21.7`, `1.21.8`)
+- Version properties in `props/<version>.properties` (`1.20.1`, `1.21.1`, `1.21.3`, `1.21.4`, `1.21.5`, `1.21.6`, `1.21.7`, `1.21.8`, `1.21.9`)
 - Override target version: `-Ptarget_mc_version=<version>`
-- Version-specific task aliases: `build1_20_1`, `build1_21_1`, `build1_21_3`, `build1_21_4`, `build1_21_5`, `build1_21_6`, `build1_21_7`, `build1_21_8`, etc.
-- 1.21.8/1.21.7/1.21.6/1.21.5/1.21.4/1.21.3/1.21.1 use NeoForge; 1.20.1 uses Forge (NeoForge didn't exist for 1.20.1)
+- Version-specific task aliases: `build1_20_1`, `build1_21_1`, `build1_21_3`, `build1_21_4`, `build1_21_5`, `build1_21_6`, `build1_21_7`, `build1_21_8`, `build1_21_9`, etc.
+- 1.21.9/1.21.8/1.21.7/1.21.6/1.21.5/1.21.4/1.21.3/1.21.1 use NeoForge; 1.20.1 uses Forge (NeoForge didn't exist for 1.20.1)
 
 ### Where to Place Code
 
@@ -130,6 +139,7 @@ Gradle project names differ from directory names. `settings.gradle` dynamically 
 
 ### Key Dependencies
 
+**1.21.9**: Architectury API 18.0.3, Fabric Loader 0.16.13 / Fabric API 0.134.1+1.21.9, NeoForge 21.9.16-beta
 **1.21.8**: Architectury API 17.0.8, Fabric Loader 0.18.4 / Fabric API 0.136.0+1.21.8, NeoForge 21.8.52
 **1.21.7**: Architectury API 17.0.8, Fabric Loader 0.17.3 / Fabric API 0.128.2+1.21.7, NeoForge 21.7.25-beta
 **1.21.6**: Architectury API 17.0.6, Fabric Loader 0.17.3 / Fabric API 0.128.2+1.21.6, NeoForge 21.6.20-beta
@@ -143,6 +153,7 @@ Gradle project names differ from directory names. `settings.gradle` dynamically 
 ### Platform-Specific gradle.properties
 
 Each version-specific platform module requires a `gradle.properties` with `loom.platform`:
+- `fabric-1.21.9/gradle.properties` → `loom.platform=fabric`
 - `fabric-1.21.8/gradle.properties` → `loom.platform=fabric`
 - `fabric-1.21.7/gradle.properties` → `loom.platform=fabric`
 - `fabric-1.21.6/gradle.properties` → `loom.platform=fabric`
@@ -151,6 +162,7 @@ Each version-specific platform module requires a `gradle.properties` with `loom.
 - `fabric-1.21.3/gradle.properties` → `loom.platform=fabric`
 - `fabric-1.21.1/gradle.properties` → `loom.platform=fabric`
 - `fabric-1.20.1/gradle.properties` → `loom.platform=fabric`
+- `neoforge-1.21.9/gradle.properties` → `loom.platform=neoforge`
 - `neoforge-1.21.8/gradle.properties` → `loom.platform=neoforge`
 - `neoforge-1.21.7/gradle.properties` → `loom.platform=neoforge`
 - `neoforge-1.21.6/gradle.properties` → `loom.platform=neoforge`
