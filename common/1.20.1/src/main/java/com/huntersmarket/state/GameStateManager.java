@@ -1,5 +1,6 @@
 package com.huntersmarket.state;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
@@ -122,9 +123,11 @@ public class GameStateManager {
             broadcastTitle(Component.literal(String.valueOf(secondsLeft)), 0, 25, 0);
         } else if (countdownTicks == 0) {
             broadcastTitle(
-                    Component.translatable("message.huntersmarket.game_started"),
+                    Component.translatable("message.huntersmarket.game_started")
+                            .withStyle(style -> style.withColor(ChatFormatting.GOLD).withBold(true)),
                     0, 40, 10
             );
+            broadcastSound(SoundEvents.ANVIL_PLACE);
             start();
         }
         countdownTicks--;
@@ -135,6 +138,13 @@ public class GameStateManager {
         for (ServerPlayer player : serverLevel.getServer().getPlayerList().getPlayers()) {
             player.connection.send(new ClientboundSetTitlesAnimationPacket(fadeIn, stay, fadeOut));
             player.connection.send(new ClientboundSetTitleTextPacket(title));
+        }
+    }
+
+    private void broadcastSound(net.minecraft.sounds.SoundEvent sound) {
+        if (serverLevel == null || serverLevel.getServer() == null) return;
+        for (ServerPlayer player : serverLevel.getServer().getPlayerList().getPlayers()) {
+            player.playNotifySound(sound, SoundSource.PLAYERS, 1.0f, 1.0f);
         }
     }
 
