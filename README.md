@@ -73,8 +73,8 @@ cd HuntersMarket
 ./gradlew release
 ```
 
-**Output Files**: `<platform>-<version>/build/libs/huntersmarket-*-<platform>.jar`
-- Example: `fabric-1.21.11/build/libs/huntersmarket-*-fabric.jar`
+**Output Files**: `<platform>/<version>/build/libs/huntersmarket-*-<platform>.jar`
+- Example: `fabric/1.21.11/build/libs/huntersmarket-*-fabric.jar`
 
 ## Development Setup
 
@@ -125,14 +125,18 @@ cd HuntersMarket
 
 ```
 HuntersMarket/
-├── common-shared/           # Shared version-agnostic sources (included via srcDir)
-├── common-<version>/        # Common module per MC version (version-specific APIs)
-├── fabric-base/             # Shared Fabric sources
-├── fabric-<version>/        # Fabric subproject per MC version
-├── neoforge-base/           # Shared NeoForge sources
-├── neoforge-<version>/      # NeoForge subproject per MC version (1.21.1+)
-├── forge-base/              # Shared Forge sources
-├── forge-1.20.1/            # Forge subproject for MC 1.20.1
+├── common/
+│   ├── shared/              # Shared version-agnostic sources (included via srcDir)
+│   └── <version>/           # Common module per MC version (version-specific APIs)
+├── fabric/
+│   ├── base/                # Shared Fabric sources
+│   └── <version>/           # Fabric subproject per MC version
+├── neoforge/
+│   ├── base/                # Shared NeoForge sources
+│   └── <version>/           # NeoForge subproject per MC version (1.21.1+)
+├── forge/
+│   ├── base/                # Shared Forge sources
+│   └── 1.20.1/              # Forge subproject for MC 1.20.1
 ├── props/                   # Version-specific properties
 ├── build.gradle             # Root build configuration (Groovy DSL)
 ├── settings.gradle          # Multi-module settings

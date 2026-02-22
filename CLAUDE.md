@@ -83,58 +83,22 @@ Note: Tests are excluded from builds (`-x test`). The build system auto-download
 
 The project uses Architectury's pattern to share code between Fabric and NeoForge/Forge:
 
-- **`common-shared/`** — Platform-independent shared code (no build.gradle, included as srcDir by common module). Base package: `com.huntersmarket`
-- **`common-1.21.11/`** — Version-specific common module for MC 1.21.11 (Architectury common). Includes `common-shared` sources via `srcDir`.
-- **`common-1.21.10/`** — Version-specific common module for MC 1.21.10 (Architectury common). Includes `common-shared` sources via `srcDir`.
-- **`common-1.21.9/`** — Version-specific common module for MC 1.21.9 (Architectury common). Includes `common-shared` sources via `srcDir`.
-- **`common-1.21.8/`** — Version-specific common module for MC 1.21.8 (Architectury common). Includes `common-shared` sources via `srcDir`.
-- **`common-1.21.7/`** — Version-specific common module for MC 1.21.7 (Architectury common). Includes `common-shared` sources via `srcDir`.
-- **`common-1.21.6/`** — Version-specific common module for MC 1.21.6 (Architectury common). Includes `common-shared` sources via `srcDir`.
-- **`common-1.21.5/`** — Version-specific common module for MC 1.21.5 (Architectury common). Includes `common-shared` sources via `srcDir`.
-- **`common-1.21.4/`** — Version-specific common module for MC 1.21.4 (Architectury common). Includes `common-shared` sources via `srcDir`.
-- **`common-1.21.3/`** — Version-specific common module for MC 1.21.3 (Architectury common). Includes `common-shared` sources via `srcDir`.
-- **`common-1.21.1/`** — Version-specific common module for MC 1.21.1 (Architectury common). Includes `common-shared` sources via `srcDir`.
-- **`common-1.20.1/`** — Version-specific common module for MC 1.20.1. Includes `common-shared` sources via `srcDir`.
-- **`fabric-base/`** — Fabric platform base code (no build.gradle, included as srcDir by fabric module)
-- **`fabric-1.21.11/`** — Fabric platform build module for MC 1.21.11. Maps to Gradle project `:fabric`.
-- **`fabric-1.21.10/`** — Fabric platform build module for MC 1.21.10. Maps to Gradle project `:fabric`.
-- **`fabric-1.21.9/`** — Fabric platform build module for MC 1.21.9. Maps to Gradle project `:fabric`.
-- **`fabric-1.21.8/`** — Fabric platform build module for MC 1.21.8. Maps to Gradle project `:fabric`.
-- **`fabric-1.21.7/`** — Fabric platform build module for MC 1.21.7. Maps to Gradle project `:fabric`.
-- **`fabric-1.21.6/`** — Fabric platform build module for MC 1.21.6. Maps to Gradle project `:fabric`.
-- **`fabric-1.21.5/`** — Fabric platform build module for MC 1.21.5. Maps to Gradle project `:fabric`.
-- **`fabric-1.21.4/`** — Fabric platform build module for MC 1.21.4. Maps to Gradle project `:fabric`.
-- **`fabric-1.21.3/`** — Fabric platform build module for MC 1.21.3. Maps to Gradle project `:fabric`.
-- **`fabric-1.21.1/`** — Fabric platform build module for MC 1.21.1. Maps to Gradle project `:fabric`.
-- **`fabric-1.20.1/`** — Fabric platform build module for MC 1.20.1. Maps to Gradle project `:fabric`.
-- **`neoforge-base/`** — NeoForge platform base code (no build.gradle, included as srcDir by neoforge module)
-- **`neoforge-1.21.11/`** — NeoForge platform build module for MC 1.21.11. Maps to Gradle project `:neoforge`.
-- **`neoforge-1.21.10/`** — NeoForge platform build module for MC 1.21.10. Maps to Gradle project `:neoforge`.
-- **`neoforge-1.21.9/`** — NeoForge platform build module for MC 1.21.9. Maps to Gradle project `:neoforge`.
-- **`neoforge-1.21.8/`** — NeoForge platform build module for MC 1.21.8. Maps to Gradle project `:neoforge`.
-- **`neoforge-1.21.7/`** — NeoForge platform build module for MC 1.21.7. Maps to Gradle project `:neoforge`.
-- **`neoforge-1.21.6/`** — NeoForge platform build module for MC 1.21.6. Maps to Gradle project `:neoforge`.
-- **`neoforge-1.21.5/`** — NeoForge platform build module for MC 1.21.5. Maps to Gradle project `:neoforge`.
-- **`neoforge-1.21.4/`** — NeoForge platform build module for MC 1.21.4. Maps to Gradle project `:neoforge`.
-- **`neoforge-1.21.3/`** — NeoForge platform build module for MC 1.21.3. Maps to Gradle project `:neoforge`.
-- **`neoforge-1.21.1/`** — NeoForge platform build module for MC 1.21.1. Maps to Gradle project `:neoforge`.
-- **`forge-base/`** — Forge platform base code (no build.gradle, included as srcDir by forge module)
-- **`forge-1.20.1/`** — Forge platform build module for MC 1.20.1. Maps to Gradle project `:forge`.
+- **`common/shared/`** — Platform-independent shared code (no build.gradle, included as srcDir by common module). Base package: `com.huntersmarket`
+- **`common/{version}/`** (×11) — Version-specific common module (Architectury common). Includes `common/shared` sources via `srcDir`. Maps to Gradle project `:common-{version}`.
+- **`fabric/base/`** — Fabric platform base code (no build.gradle, included as srcDir by fabric module)
+- **`fabric/{version}/`** (×11) — Fabric platform build module. Maps to Gradle project `:fabric`.
+- **`neoforge/base/`** — NeoForge platform base code (no build.gradle, included as srcDir by neoforge module)
+- **`neoforge/{version}/`** (×10) — NeoForge platform build module (1.21.1+). Maps to Gradle project `:neoforge`.
+- **`forge/base/`** — Forge platform base code (no build.gradle, included as srcDir by forge module)
+- **`forge/1.20.1/`** — Forge platform build module for MC 1.20.1. Maps to Gradle project `:forge`.
 
 ### Module Resolution in settings.gradle
 
 Gradle project names differ from directory names. `settings.gradle` dynamically resolves modules based on `target_mc_version`:
-- For 1.21.11: `:common-1.21.11` → `common-1.21.11/`, `:fabric` → `fabric-1.21.11/`, `:neoforge` → `neoforge-1.21.11/`
-- For 1.21.10: `:common-1.21.10` → `common-1.21.10/`, `:fabric` → `fabric-1.21.10/`, `:neoforge` → `neoforge-1.21.10/`
-- For 1.21.9: `:common-1.21.9` → `common-1.21.9/`, `:fabric` → `fabric-1.21.9/`, `:neoforge` → `neoforge-1.21.9/`
-- For 1.21.8: `:common-1.21.8` → `common-1.21.8/`, `:fabric` → `fabric-1.21.8/`, `:neoforge` → `neoforge-1.21.8/`
-- For 1.21.7: `:common-1.21.7` → `common-1.21.7/`, `:fabric` → `fabric-1.21.7/`, `:neoforge` → `neoforge-1.21.7/`
-- For 1.21.6: `:common-1.21.6` → `common-1.21.6/`, `:fabric` → `fabric-1.21.6/`, `:neoforge` → `neoforge-1.21.6/`
-- For 1.21.5: `:common-1.21.5` → `common-1.21.5/`, `:fabric` → `fabric-1.21.5/`, `:neoforge` → `neoforge-1.21.5/`
-- For 1.21.4: `:common-1.21.4` → `common-1.21.4/`, `:fabric` → `fabric-1.21.4/`, `:neoforge` → `neoforge-1.21.4/`
-- For 1.21.3: `:common-1.21.3` → `common-1.21.3/`, `:fabric` → `fabric-1.21.3/`, `:neoforge` → `neoforge-1.21.3/`
-- For 1.21.1: `:common-1.21.1` → `common-1.21.1/`, `:fabric` → `fabric-1.21.1/`, `:neoforge` → `neoforge-1.21.1/`
-- For 1.20.1: `:common-1.20.1` → `common-1.20.1/`, `:fabric` → `fabric-1.20.1/`, `:forge` → `forge-1.20.1/`
+- `:common-{version}` → `common/{version}/`
+- `:fabric` → `fabric/{version}/`
+- `:neoforge` → `neoforge/{version}/` (1.21.1+)
+- `:forge` → `forge/{version}/` (1.20.1)
 
 ### Multi-Version Support
 
@@ -145,15 +109,15 @@ Gradle project names differ from directory names. `settings.gradle` dynamically 
 
 ### Where to Place Code
 
-- **Shared game logic** → `common-shared/src/main/java/com/huntersmarket/`
-- **Version-specific common code** → `common-<version>/src/main/java/`
-- **Fabric-specific code** → `fabric-base/src/main/java/com/huntersmarket/fabric/`
-- **NeoForge-specific code** → `neoforge-base/src/main/java/com/huntersmarket/neoforge/`
-- **Forge-specific code** → `forge-base/src/main/java/com/huntersmarket/forge/`
-- **Assets/resources** → `common-<version>/src/main/resources/`
-- **Fabric resources** (fabric.mod.json) → `fabric-base/src/main/resources/` (version override in `fabric-<version>/src/main/resources/`)
-- **NeoForge resources** (neoforge.mods.toml) → `neoforge-base/src/main/resources/META-INF/`
-- **Forge resources** (mods.toml) → `forge-base/src/main/resources/META-INF/`
+- **Shared game logic** → `common/shared/src/main/java/com/huntersmarket/`
+- **Version-specific common code** → `common/<version>/src/main/java/`
+- **Fabric-specific code** → `fabric/base/src/main/java/com/huntersmarket/fabric/`
+- **NeoForge-specific code** → `neoforge/base/src/main/java/com/huntersmarket/neoforge/`
+- **Forge-specific code** → `forge/base/src/main/java/com/huntersmarket/forge/`
+- **Assets/resources** → `common/<version>/src/main/resources/`
+- **Fabric resources** (fabric.mod.json) → `fabric/base/src/main/resources/` (version override in `fabric/<version>/src/main/resources/`)
+- **NeoForge resources** (neoforge.mods.toml) → `neoforge/base/src/main/resources/META-INF/`
+- **Forge resources** (mods.toml) → `forge/base/src/main/resources/META-INF/`
 
 ### Key Dependencies
 
@@ -173,28 +137,9 @@ Gradle project names differ from directory names. `settings.gradle` dynamically 
 ### Platform-Specific gradle.properties
 
 Each version-specific platform module requires a `gradle.properties` with `loom.platform`:
-- `fabric-1.21.11/gradle.properties` → `loom.platform=fabric`
-- `fabric-1.21.10/gradle.properties` → `loom.platform=fabric`
-- `fabric-1.21.9/gradle.properties` → `loom.platform=fabric`
-- `fabric-1.21.8/gradle.properties` → `loom.platform=fabric`
-- `fabric-1.21.7/gradle.properties` → `loom.platform=fabric`
-- `fabric-1.21.6/gradle.properties` → `loom.platform=fabric`
-- `fabric-1.21.5/gradle.properties` → `loom.platform=fabric`
-- `fabric-1.21.4/gradle.properties` → `loom.platform=fabric`
-- `fabric-1.21.3/gradle.properties` → `loom.platform=fabric`
-- `fabric-1.21.1/gradle.properties` → `loom.platform=fabric`
-- `fabric-1.20.1/gradle.properties` → `loom.platform=fabric`
-- `neoforge-1.21.11/gradle.properties` → `loom.platform=neoforge`
-- `neoforge-1.21.10/gradle.properties` → `loom.platform=neoforge`
-- `neoforge-1.21.9/gradle.properties` → `loom.platform=neoforge`
-- `neoforge-1.21.8/gradle.properties` → `loom.platform=neoforge`
-- `neoforge-1.21.7/gradle.properties` → `loom.platform=neoforge`
-- `neoforge-1.21.6/gradle.properties` → `loom.platform=neoforge`
-- `neoforge-1.21.5/gradle.properties` → `loom.platform=neoforge`
-- `neoforge-1.21.4/gradle.properties` → `loom.platform=neoforge`
-- `neoforge-1.21.3/gradle.properties` → `loom.platform=neoforge`
-- `neoforge-1.21.1/gradle.properties` → `loom.platform=neoforge`
-- `forge-1.20.1/gradle.properties` → `loom.platform=forge`
+- `fabric/{version}/gradle.properties` → `loom.platform=fabric`
+- `neoforge/{version}/gradle.properties` → `loom.platform=neoforge`
+- `forge/1.20.1/gradle.properties` → `loom.platform=forge`
 
 Without this, Architectury Loom does not create platform-specific dependency configurations (e.g., `neoForge`, `forge`).
 
