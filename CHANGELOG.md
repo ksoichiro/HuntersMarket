@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.0] - 2026-02-22
+## [0.2.0] - 2026-02-25
 
 ### Added
 
@@ -22,10 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Minecraft 1.21.3 support (Fabric + NeoForge)
 - Play anvil sound and display gold-styled title on game start
 - Add bow and arrows to initial equipment chest
-
-### Changed
-
-- Update item prices and add Trident to price list
 
 ### Fixed
 
