@@ -24,9 +24,3 @@ versionRange = "[1.21.5,1.21.6)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.huntersmarket]]
-modId = "architectury"
-type = "required"
-versionRange = "[16,)"
-ordering = "AFTER"
-side = "BOTH"
