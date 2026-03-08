@@ -231,6 +231,12 @@ public class MarketGenerator {
         for (int i = 0; i < PLAYERS_PER_CHEST; i++) {
             container.setItem(slot++, new ItemStack(Items.BREAD, 64));
         }
+        for (int i = 0; i < PLAYERS_PER_CHEST; i++) {
+            container.setItem(slot++, new ItemStack(Items.IRON_AXE));
+        }
+        for (int i = 0; i < PLAYERS_PER_CHEST; i++) {
+            container.setItem(slot++, new ItemStack(Items.IRON_PICKAXE));
+        }
     }
 
     private static int findPlacementY(ServerLevel level, int x, int z) {
