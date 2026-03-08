@@ -13,7 +13,8 @@ Hunt monsters, collect loot, sell to the merchant, and be the first to earn 10,0
 - **Auto-Generated Market**: A market structure spawns automatically at the world spawn point
 - **Starter Equipment**: Iron Sword, Shield, and Bread provided on spawn
 - **Night Vision**: Permanent night vision for all players
-- **Real-Time HUD**: Track your earnings, play time, rankings, and market direction on screen
+- **Price Events**: Dynamic price fluctuations occur every 10 minutes, lasting 3–5 minutes — sell at the right time for maximum profit!
+- **Real-Time HUD**: Track your earnings, play time, rankings, price events, and market direction on screen
 - **Multiplayer Support**: Designed for competitive multiplayer sessions with rankings and finish notifications
 
 ## Price List

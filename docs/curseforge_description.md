@@ -28,10 +28,16 @@ Sell your monster loot to the merchant for gold:
 | Ender Pearl | 100 | Glowstone Dust | 100 |
 | Trident | 500 | | |
 
+### 📈 Price Events
+- **Dynamic Price Fluctuations**: Every 10 minutes, buy prices randomly increase or decrease by 10–30%
+- **Timed Events**: Each event lasts 3–5 minutes — sell at the right time for maximum profit!
+- **HUD Indicator**: Price events are shown on screen with direction (↑/↓), percentage, and countdown
+
 ### 📊 Real-Time HUD
 - **Earnings Display**: Track your current gold with a coin icon
 - **Play Time**: See your elapsed time in MM:SS format
 - **Rankings**: View finished players and their times
+- **Price Event Status**: See active price changes with direction arrow, percentage, and remaining time
 - **Floating Notifications**: Sale amounts pop up when you sell items
 - **Market Direction Marker**: Always know which way to the market
 
