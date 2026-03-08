@@ -31,6 +31,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
@@ -152,6 +153,8 @@ public class HuntersMarketNeoForge {
 
     private void registerEvents() {
         IEventBus forgeBus = NeoForge.EVENT_BUS;
+        forgeBus.addListener((RegisterCommandsEvent event) ->
+                HuntersMarket.registerCommands(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection()));
         forgeBus.addListener(LevelEvent.Load.class, event -> {
             if (event.getLevel() instanceof ServerLevel level) {
                 HuntersMarket.onServerLevelLoad(level);

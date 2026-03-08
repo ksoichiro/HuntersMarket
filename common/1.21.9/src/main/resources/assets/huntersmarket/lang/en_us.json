@@ -17,5 +17,9 @@
   "message.huntersmarket.winner_subtitle": "%s wins!",
   "message.huntersmarket.goal_reached_title": "Goal Reached!",
   "message.huntersmarket.goal_reached_subtitle": "%s reached the goal!",
-  "hud.huntersmarket.market_marker": "Hunter's Market"
+  "hud.huntersmarket.market_marker": "Hunter's Market",
+  "hud.huntersmarket.price_event": "Price Event",
+  "message.huntersmarket.price_event_start": "Price Fluctuation!",
+  "message.huntersmarket.price_event_start_subtitle": "Prices are changing for %s minutes!",
+  "message.huntersmarket.price_event_end": "Prices have returned to normal."
 }

@@ -17,5 +17,9 @@
   "message.huntersmarket.winner_subtitle": "%s の勝利！",
   "message.huntersmarket.goal_reached_title": "目標達成！",
   "message.huntersmarket.goal_reached_subtitle": "%s が目標達成！",
-  "hud.huntersmarket.market_marker": "ハンターズマーケット"
+  "hud.huntersmarket.market_marker": "ハンターズマーケット",
+  "hud.huntersmarket.price_event": "価格変動",
+  "message.huntersmarket.price_event_start": "価格変動発生！",
+  "message.huntersmarket.price_event_start_subtitle": "%s分間、買取価格が変動します！",
+  "message.huntersmarket.price_event_end": "買取価格が通常に戻りました。"
 }

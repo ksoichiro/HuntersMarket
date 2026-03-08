@@ -2,7 +2,12 @@ package com.huntersmarket;
 
 import com.huntersmarket.state.GameStateManager;
 import com.huntersmarket.structure.MarketGenerator;
+import com.mojang.brigadier.CommandDispatcher;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import org.slf4j.Logger;
@@ -31,6 +36,24 @@ public class HuntersMarket {
 
     public static void onServerStopping(MinecraftServer server) {
         GameStateManager.clear();
+    }
+
+    public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher,
+                                        CommandBuildContext registry,
+                                        Commands.CommandSelection selection) {
+        dispatcher.register(Commands.literal("huntersmarket")
+                .requires(source -> source.hasPermission(2))
+                .then(Commands.literal("priceevent")
+                        .executes(context -> {
+                            GameStateManager manager = GameStateManager.getInstance();
+                            if (manager == null) {
+                                context.getSource().sendFailure(Component.literal("Game not initialized"));
+                                return 0;
+                            }
+                            manager.startPriceEvent();
+                            context.getSource().sendSuccess(() -> Component.literal("Price event triggered"), true);
+                            return 1;
+                        })));
     }
 
     private static void generateMarketIfNeeded(ServerLevel level) {

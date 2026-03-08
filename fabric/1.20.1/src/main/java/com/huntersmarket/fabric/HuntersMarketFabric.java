@@ -9,6 +9,7 @@ import com.huntersmarket.registry.ModCreativeTab;
 import com.huntersmarket.registry.ModEntityTypes;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
@@ -86,6 +87,7 @@ public class HuntersMarketFabric implements ModInitializer {
         ServerLifecycleEvents.SERVER_STARTED.register(HuntersMarket::onServerStarted);
         ServerLifecycleEvents.SERVER_STOPPING.register(HuntersMarket::onServerStopping);
         ServerTickEvents.START_SERVER_TICK.register(GameTickHandler::onServerTick);
+        CommandRegistrationCallback.EVENT.register(HuntersMarket::registerCommands);
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->
                 PlayerSpawnHandler.onPlayerJoin(handler.getPlayer()));
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) ->

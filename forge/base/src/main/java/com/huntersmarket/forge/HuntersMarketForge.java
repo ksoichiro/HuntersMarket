@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.LevelEvent;
@@ -149,6 +150,8 @@ public class HuntersMarketForge {
 
     private void registerEvents() {
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+        forgeBus.addListener((RegisterCommandsEvent event) ->
+                HuntersMarket.registerCommands(event.getDispatcher(), event.getBuildContext(), event.getCommandSelection()));
         forgeBus.addListener((LevelEvent.Load event) -> {
             if (event.getLevel() instanceof ServerLevel level) {
                 HuntersMarket.onServerLevelLoad(level);

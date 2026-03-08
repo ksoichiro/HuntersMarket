@@ -29,6 +29,12 @@ public class GameStateSyncPacket {
             buf.writeUtf(fp.playerName());
             buf.writeInt(fp.finishTimeTicks());
         }
+        boolean hasEvent = manager.isPriceEventActive();
+        buf.writeBoolean(hasEvent);
+        if (hasEvent) {
+            buf.writeInt(manager.getPriceEventRemainingTicks());
+            buf.writeFloat(manager.getPriceMultiplier());
+        }
     }
 
     public static void applyOnClient(FriendlyByteBuf buf) {
@@ -42,7 +48,15 @@ public class GameStateSyncPacket {
             int finishTime = buf.readInt();
             finishedEntries.add(new ClientGameState.FinishedEntry(name, finishTime));
         }
-        ClientGameState.update(GameState.values()[stateOrdinal], salesAmount, playTime, finishedEntries);
+        boolean hasEvent = buf.readBoolean();
+        int eventRemainingTicks = 0;
+        float multiplier = 1.0f;
+        if (hasEvent) {
+            eventRemainingTicks = buf.readInt();
+            multiplier = buf.readFloat();
+        }
+        ClientGameState.update(GameState.values()[stateOrdinal], salesAmount, playTime,
+                finishedEntries, hasEvent, eventRemainingTicks, multiplier);
     }
 
     public static void sendToPlayer(ServerPlayer player, GameStateManager manager) {
