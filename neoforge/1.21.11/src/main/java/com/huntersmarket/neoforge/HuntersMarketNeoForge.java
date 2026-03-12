@@ -6,6 +6,7 @@ import com.huntersmarket.event.GameTickHandler;
 import com.huntersmarket.event.PlayerSpawnHandler;
 import com.huntersmarket.network.GameStateSyncPacket;
 import com.huntersmarket.neoforge.client.HuntersMarketNeoForgeClient;
+import com.huntersmarket.state.ClientGameState;
 import com.huntersmarket.registry.ModBlocks;
 import com.huntersmarket.registry.ModCreativeTab;
 import com.huntersmarket.registry.ModEntityTypes;
@@ -137,7 +138,7 @@ public class HuntersMarketNeoForge {
             registrar.playToClient(GameStatePayload.TYPE, GameStatePayload.STREAM_CODEC,
                     (payload, context) -> context.enqueueWork(() -> {
                         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.wrappedBuffer(payload.data()));
-                        GameStateSyncPacket.applyOnClient(buf);
+                        ClientGameState.handleSyncPacket(buf);
                     }));
         });
 

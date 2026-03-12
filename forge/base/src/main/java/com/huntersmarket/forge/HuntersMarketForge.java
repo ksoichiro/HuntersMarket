@@ -7,6 +7,7 @@ import com.huntersmarket.event.PlayerSpawnHandler;
 import com.huntersmarket.forge.client.HuntersMarketForgeClient;
 import com.huntersmarket.network.GameStateSyncPacket;
 import com.huntersmarket.registry.ModBlocks;
+import com.huntersmarket.state.ClientGameState;
 import com.huntersmarket.registry.ModCreativeTab;
 import com.huntersmarket.registry.ModEntityTypes;
 import io.netty.buffer.Unpooled;
@@ -75,7 +76,7 @@ public class HuntersMarketForge {
             var ctx = ctxSupplier.get();
             ctx.enqueueWork(() -> {
                 FriendlyByteBuf friendlyBuf = new FriendlyByteBuf(Unpooled.wrappedBuffer(msg.data));
-                GameStateSyncPacket.applyOnClient(friendlyBuf);
+                ClientGameState.handleSyncPacket(friendlyBuf);
             });
             ctx.setPacketHandled(true);
         }

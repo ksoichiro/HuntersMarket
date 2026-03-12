@@ -1,15 +1,12 @@
 package com.huntersmarket.network;
 
 import com.huntersmarket.HuntersMarket;
-import com.huntersmarket.state.ClientGameState;
 import com.huntersmarket.state.FinishedPlayer;
-import com.huntersmarket.state.GameState;
 import com.huntersmarket.state.GameStateManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
@@ -35,28 +32,6 @@ public class GameStateSyncPacket {
             buf.writeInt(manager.getPriceEventRemainingTicks());
             buf.writeFloat(manager.getPriceMultiplier());
         }
-    }
-
-    public static void applyOnClient(FriendlyByteBuf buf) {
-        int stateOrdinal = buf.readInt();
-        long salesAmount = buf.readLong();
-        int playTime = buf.readInt();
-        int finishedCount = buf.readInt();
-        List<ClientGameState.FinishedEntry> finishedEntries = new ArrayList<>();
-        for (int i = 0; i < finishedCount; i++) {
-            String name = buf.readUtf();
-            int finishTime = buf.readInt();
-            finishedEntries.add(new ClientGameState.FinishedEntry(name, finishTime));
-        }
-        boolean hasEvent = buf.readBoolean();
-        int eventRemainingTicks = 0;
-        float multiplier = 1.0f;
-        if (hasEvent) {
-            eventRemainingTicks = buf.readInt();
-            multiplier = buf.readFloat();
-        }
-        ClientGameState.update(GameState.values()[stateOrdinal], salesAmount, playTime,
-                finishedEntries, hasEvent, eventRemainingTicks, multiplier);
     }
 
     public static void sendToPlayer(ServerPlayer player, GameStateManager manager) {

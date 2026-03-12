@@ -18,7 +18,7 @@ public class HuntersMarketFabricClient implements ClientModInitializer {
     public void onInitializeClient() {
         // Networking
         ClientPlayNetworking.registerGlobalReceiver(GameStateSyncPacket.ID, (client, handler, buf, responseSender) -> {
-            GameStateSyncPacket.applyOnClient(buf);
+            ClientGameState.handleSyncPacket(buf);
         });
 
         // Entity rendering

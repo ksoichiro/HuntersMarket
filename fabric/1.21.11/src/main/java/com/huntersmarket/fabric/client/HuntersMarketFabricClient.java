@@ -4,7 +4,6 @@ import com.huntersmarket.entity.MerchantEntityRenderer;
 import com.huntersmarket.entity.MerchantModel;
 import com.huntersmarket.fabric.HuntersMarketFabric;
 import com.huntersmarket.hud.GameHudOverlay;
-import com.huntersmarket.network.GameStateSyncPacket;
 import com.huntersmarket.registry.ModEntityTypes;
 import com.huntersmarket.state.ClientGameState;
 import io.netty.buffer.Unpooled;
@@ -23,7 +22,7 @@ public class HuntersMarketFabricClient implements ClientModInitializer {
         ClientPlayNetworking.registerGlobalReceiver(HuntersMarketFabric.GameStatePayload.TYPE, (payload, context) -> {
             context.client().execute(() -> {
                 FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.wrappedBuffer(payload.data()));
-                GameStateSyncPacket.applyOnClient(buf);
+                ClientGameState.handleSyncPacket(buf);
             });
         });
 

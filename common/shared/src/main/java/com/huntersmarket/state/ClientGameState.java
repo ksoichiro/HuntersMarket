@@ -1,6 +1,7 @@
 package com.huntersmarket.state;
 
 import com.huntersmarket.hud.GameHudOverlay;
+import net.minecraft.network.FriendlyByteBuf;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,6 +62,28 @@ public class ClientGameState {
 
     public static float getPriceMultiplier() {
         return priceMultiplier;
+    }
+
+    public static void handleSyncPacket(FriendlyByteBuf buf) {
+        int stateOrdinal = buf.readInt();
+        long salesAmount = buf.readLong();
+        int playTime = buf.readInt();
+        int finishedCount = buf.readInt();
+        List<FinishedEntry> finishedEntries = new ArrayList<>();
+        for (int i = 0; i < finishedCount; i++) {
+            String name = buf.readUtf();
+            int finishTime = buf.readInt();
+            finishedEntries.add(new FinishedEntry(name, finishTime));
+        }
+        boolean hasEvent = buf.readBoolean();
+        int eventRemainingTicks = 0;
+        float multiplier = 1.0f;
+        if (hasEvent) {
+            eventRemainingTicks = buf.readInt();
+            multiplier = buf.readFloat();
+        }
+        update(GameState.values()[stateOrdinal], salesAmount, playTime,
+                finishedEntries, hasEvent, eventRemainingTicks, multiplier);
     }
 
     public static void reset() {
