@@ -71,7 +71,6 @@ This mod is built with **Architectury** and supports **multiple mod loaders**!
 
 ### Requirements
 - **Mod Loader**: Fabric (with Fabric API) or NeoForge (1.21.1+) / Forge (1.20.1)
-- **Dependencies**: Architectury API (version depends on Minecraft version)
 
 ### Compatibility
 - Works alongside other mods

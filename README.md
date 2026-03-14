@@ -29,19 +29,19 @@ Hunt monsters, collect loot, sell to the merchant, and be the first to earn 10,0
 
 ## Supported Versions
 
-| Minecraft | Mod Loaders | Architectury API |
-|-----------|-------------|------------------|
-| 1.21.11 | Fabric / NeoForge | 19.0.1+ |
-| 1.21.10 | Fabric / NeoForge | 18.0.8+ |
-| 1.21.9 | Fabric / NeoForge | 18.0.3+ |
-| 1.21.8 | Fabric / NeoForge | 17.0.8+ |
-| 1.21.7 | Fabric / NeoForge | 17.0.8+ |
-| 1.21.6 | Fabric / NeoForge | 17.0.6+ |
-| 1.21.5 | Fabric / NeoForge | 16.1.4+ |
-| 1.21.4 | Fabric / NeoForge | 15.0.3+ |
-| 1.21.3 | Fabric / NeoForge | 14.0.4+ |
-| 1.21.1 | Fabric / NeoForge | 13.0.8+ |
-| 1.20.1 | Fabric / Forge | 9.2.14+ |
+| Minecraft | Mod Loaders |
+|-----------|-------------|
+| 1.21.11 | Fabric / NeoForge |
+| 1.21.10 | Fabric / NeoForge |
+| 1.21.9 | Fabric / NeoForge |
+| 1.21.8 | Fabric / NeoForge |
+| 1.21.7 | Fabric / NeoForge |
+| 1.21.6 | Fabric / NeoForge |
+| 1.21.5 | Fabric / NeoForge |
+| 1.21.4 | Fabric / NeoForge |
+| 1.21.3 | Fabric / NeoForge |
+| 1.21.1 | Fabric / NeoForge |
+| 1.20.1 | Fabric / Forge |
 
 All versions require **Fabric API** when using Fabric. See `props/<version>.properties` for exact dependency versions.
 
@@ -52,8 +52,6 @@ All versions require **Fabric API** when using Fabric. See `props/<version>.prop
 - **Mod Loader** (choose one):
   - **1.21.1+**: Fabric (with Fabric API) or NeoForge
   - **1.20.1**: Fabric (with Fabric API) or Forge
-- **Dependencies**: Architectury API (version depends on Minecraft version)
-
 ### For Developers
 - **Java Development Kit (JDK)**: 21 for 1.21.1+, 17 for 1.20.1 (auto-downloaded by toolchain)
 - **IDE**: IntelliJ IDEA (recommended) or Eclipse
@@ -104,23 +102,19 @@ cd HuntersMarket
 
 ### Fabric (1.21.1+)
 1. Install Fabric Loader and Fabric API for your Minecraft version
-2. Install Architectury API (see [Supported Versions](#supported-versions) for the required version)
-3. Copy the Fabric JAR to `.minecraft/mods/` folder
+2. Copy the Fabric JAR to `.minecraft/mods/` folder
 
 ### NeoForge (1.21.1+)
 1. Install NeoForge for your Minecraft version
-2. Install Architectury API
-3. Copy the NeoForge JAR to `.minecraft/mods/` folder
+2. Copy the NeoForge JAR to `.minecraft/mods/` folder
 
 ### Fabric (1.20.1)
 1. Install Fabric Loader 0.16.10+ and Fabric API 0.92.2+1.20.1
-2. Install Architectury API 9.2.14+
-3. Copy the Fabric JAR to `.minecraft/mods/` folder
+2. Copy the Fabric JAR to `.minecraft/mods/` folder
 
 ### Forge (1.20.1)
 1. Install Forge 47.3.0+
-2. Install Architectury API 9.2.14+
-3. Copy the Forge JAR to `.minecraft/mods/` folder
+2. Copy the Forge JAR to `.minecraft/mods/` folder
 
 ## Project Structure
 

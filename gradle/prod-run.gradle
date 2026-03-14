@@ -481,7 +481,7 @@ if (project.name == 'fabric') {
             ant.copy(file: modJar, todir: modsDir)
             logger.lifecycle("  Mod: ${modJar.name}")
 
-            // Dependency mods (Fabric API, Architectury API)
+            // Dependency mods (Fabric API)
             configurations.prodMods.files.each { f ->
                 ant.copy(file: f, todir: modsDir)
                 logger.lifecycle("  Dep: ${f.name}")
@@ -657,7 +657,7 @@ if (project.name == 'neoforge') {
             ant.copy(file: modJar, todir: modsDir)
             logger.lifecycle("  Mod: ${modJar.name}")
 
-            // Dependency mods (Architectury API)
+            // Dependency mods
             configurations.prodMods.files.each { f ->
                 ant.copy(file: f, todir: modsDir)
                 logger.lifecycle("  Dep: ${f.name}")
@@ -836,7 +836,7 @@ if (project.name == 'forge') {
             ant.copy(file: modJar, todir: modsDir)
             logger.lifecycle("  Mod: ${modJar.name}")
 
-            // Dependency mods (Architectury API)
+            // Dependency mods
             configurations.prodMods.files.each { f ->
                 ant.copy(file: f, todir: modsDir)
                 logger.lifecycle("  Dep: ${f.name}")
