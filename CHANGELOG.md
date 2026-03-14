@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-03-14
+
+### Added
+
+- Price fluctuation events with HUD display and admin command
+- Iron axe and iron pickaxe to market chest equipment
+
+### Changed
+
+- Remove Architectury API runtime dependency
+- Move client decode logic from GameStateSyncPacket to ClientGameState
+
 ## [0.2.0] - 2026-02-25
 
 ### Added
@@ -38,6 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Multi-loader support: Fabric and NeoForge (Minecraft 1.21.1), Fabric and Forge (Minecraft 1.20.1)
 - Game state persistence using SavedData
 
-[Unreleased]: https://github.com/ksoichiro/HuntersMarket/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/ksoichiro/HuntersMarket/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/ksoichiro/HuntersMarket/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/ksoichiro/HuntersMarket/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/ksoichiro/HuntersMarket/releases/tag/v0.1.0
