@@ -17,8 +17,10 @@ public class PriceList {
         PRICES.put(Items.SPIDER_EYE, 75);
         PRICES.put(Items.GUNPOWDER, 75);
         PRICES.put(Items.ENDER_PEARL, 100);
-        PRICES.put(Items.GLOWSTONE_DUST, 100);
+        PRICES.put(Items.MAGMA_CREAM, 50);
+        PRICES.put(Items.BLAZE_ROD, 100);
         PRICES.put(Items.TRIDENT, 500);
+        PRICES.put(Items.WITHER_SKELETON_SKULL, 500);
     }
 
     public static int getPrice(Item item) {

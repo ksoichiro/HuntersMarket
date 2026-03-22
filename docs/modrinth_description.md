@@ -25,8 +25,9 @@ Sell your monster loot to the merchant for gold:
 | Rotten Flesh | 50 | Bone | 50 |
 | Arrow | 25 | String | 25 |
 | Spider Eye | 75 | Gunpowder | 75 |
-| Ender Pearl | 100 | Glowstone Dust | 100 |
-| Trident | 500 | | |
+| Magma Cream | 50 | Ender Pearl | 100 |
+| Blaze Rod | 100 | Trident | 500 |
+| Wither Skeleton Skull | 500 | | |
 
 ### 📈 Price Events
 - **Dynamic Price Fluctuations**: Every 10 minutes, buy prices randomly increase or decrease by 10–30%

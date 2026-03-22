@@ -24,8 +24,9 @@ Hunt monsters, collect loot, sell to the merchant, and be the first to earn 10,0
 | Rotten Flesh | 50 | Bone | 50 |
 | Arrow | 25 | String | 25 |
 | Spider Eye | 75 | Gunpowder | 75 |
-| Ender Pearl | 100 | Glowstone Dust | 100 |
-| Trident | 500 | | |
+| Magma Cream | 50 | Ender Pearl | 100 |
+| Blaze Rod | 100 | Trident | 500 |
+| Wither Skeleton Skull | 500 | | |
 
 ## Supported Versions
 

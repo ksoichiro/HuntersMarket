@@ -99,7 +99,8 @@ Implement the ore purchase/selling mechanism.
 
 - [x] 6-1. Create `PriceList` defining sellable items and prices
   - Rotten Flesh: 10, Bone: 10, Arrow: 5, String: 5
-  - Spider Eye: 15, Gunpowder: 15, Ender Pearl: 20, Glowstone Dust: 20
+  - Spider Eye: 15, Gunpowder: 15, Magma Cream: 10, Ender Pearl: 20
+  - Blaze Rod: 20, Trident: 100, Wither Skeleton Skull: 100
 - [x] 6-2. Choose and implement selling UI approach
   - **Option A**: Reuse vanilla trading UI (MerchantMenu) - preferred if feasible
   - **Option B**: Item-use on merchant (simpler, use items directly on NPC)
