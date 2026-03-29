@@ -13,6 +13,8 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
 }
 
+includeBuild 'gradle/shared'
+
 rootProject.name = 'huntersmarket'
 
 // Include version-specific common module based on target Minecraft version

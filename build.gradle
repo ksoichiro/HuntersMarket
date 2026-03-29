@@ -2,6 +2,13 @@ plugins {
     id 'dev.architectury.loom' version '1.13-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
     id 'com.gradleup.shadow' version '8.3.6' apply false
+    id 'com.github.ksoichiro.mcmod'
+}
+
+mcmod {
+    projectDisplayName = "Hunter's Market"
+    resourceValidation { enabled = false }
+    prodRun { enabled = true }
 }
 
 // Multi-version support: Load version-specific properties
@@ -107,9 +114,6 @@ subprojects {
 
     // Common resource processing for platform modules (fabric, neoforge, forge)
     if (project.name in ['fabric', 'neoforge', 'forge']) {
-        // Production run support (runProd)
-        apply from: "${rootDir}/gradle/prod-run.gradle"
-
         tasks.withType(ProcessResources).configureEach {
             if (project.ext.has('pack_format')) {
                 inputs.property 'pack_format', project.ext.pack_format
@@ -129,5 +133,3 @@ subprojects {
     }
 }
 
-// Multi-version build tasks (cleanAll, buildAll, etc.)
-apply from: 'gradle/multi-version-tasks.gradle'
