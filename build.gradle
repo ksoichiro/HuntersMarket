@@ -9,6 +9,13 @@ mcmod {
     projectDisplayName = "Hunter's Market"
     resourceValidation { enabled = false }
     prodRun { enabled = true }
+    nbtConversion {
+        enabled = true
+        sourceVersion = '1.21.1'
+        targetVersion = '1.20.1'
+        inputDir = 'common/1.21.1/src/main/resources/data/huntersmarket/structure'
+        outputDir = 'common/1.20.1/build/generated/nbt/data/huntersmarket/structures'
+    }
 }
 
 // Multi-version support: Load version-specific properties
