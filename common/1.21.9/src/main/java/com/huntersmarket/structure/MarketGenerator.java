@@ -35,6 +35,10 @@ public class MarketGenerator {
     // Y offset from structure origin to player foot level
     private static final int FLOOR_HEIGHT = 1;
     private static final int PLAYERS_PER_CHEST = 2;
+    // Maximum fraction of footprint columns that may be buried by higher terrain
+    private static final double MAX_BURIAL_FRACTION = 0.25;
+    // Margin around the structure footprint when clearing terrain above
+    private static final int CLEAR_MARGIN = 2;
 
     /**
      * Place the market NBT structure at the best location near the given X/Z.
@@ -102,6 +106,9 @@ public class MarketGenerator {
         }
         removeDroppedItems(level, placePos, size);
 
+        // Clear terrain above the structure so it is not buried
+        clearTerrainAbove(level, placePos, size);
+
         // Fill large chest with equipment for players
         fillChest(level, placePos, size);
 
@@ -140,9 +147,14 @@ public class MarketGenerator {
                 boolean belowSea = false;
 
                 // Sample heights across footprint (every 2 blocks for speed)
+                int sampleCountX = (size.getX() + 1) / 2;
+                int sampleCountZ = (size.getZ() + 1) / 2;
+                int[] heights = new int[sampleCountX * sampleCountZ];
+                int sampleIdx = 0;
                 for (int x = 0; x < size.getX(); x += 2) {
                     for (int z = 0; z < size.getZ(); z += 2) {
                         int y = findPlacementY(level, cx + x, cz + z);
+                        heights[sampleIdx++] = y;
                         minY = Math.min(minY, y);
                         maxY = Math.max(maxY, y);
                         if (y < seaLevel) {
@@ -154,6 +166,22 @@ public class MarketGenerator {
                 if (belowSea || minY == Integer.MAX_VALUE) continue;
 
                 int variance = maxY - minY;
+                // Skip locations where terrain height difference exceeds structure height
+                if (variance > size.getY()) continue;
+
+                // Skip locations where too many columns have terrain covering
+                // more than half the structure height
+                int halfHeight = size.getY() / 2;
+                int buriedColumns = 0;
+                for (int i = 0; i < sampleIdx; i++) {
+                    if (heights[i] - minY > halfHeight) {
+                        buriedColumns++;
+                    }
+                }
+                if ((double) buriedColumns / sampleIdx > MAX_BURIAL_FRACTION) {
+                    continue;
+                }
+
                 if (variance < bestVariance) {
                     bestVariance = variance;
                     bestPos = new BlockPos(cx, 0, cz);
@@ -233,6 +261,32 @@ public class MarketGenerator {
         }
         for (int i = 0; i < PLAYERS_PER_CHEST; i++) {
             container.setItem(slot++, new ItemStack(Items.IRON_PICKAXE));
+        }
+    }
+
+    /**
+     * Clear solid blocks above the structure footprint (plus margin) so the
+     * structure is not buried by surrounding terrain. Clears from the structure
+     * roof upward until open air is reached for each column.
+     */
+    private static void clearTerrainAbove(ServerLevel level, BlockPos placePos, Vec3i size) {
+        int roofY = placePos.getY() + size.getY();
+        int startX = placePos.getX() - CLEAR_MARGIN;
+        int endX = placePos.getX() + size.getX() + CLEAR_MARGIN;
+        int startZ = placePos.getZ() - CLEAR_MARGIN;
+        int endZ = placePos.getZ() + size.getZ() + CLEAR_MARGIN;
+
+        for (int x = startX; x < endX; x++) {
+            for (int z = startZ; z < endZ; z++) {
+                int surfaceY = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z);
+                for (int y = roofY; y < surfaceY; y++) {
+                    BlockPos pos = new BlockPos(x, y, z);
+                    BlockState state = level.getBlockState(pos);
+                    if (!state.isAir()) {
+                        level.setBlock(pos, Blocks.AIR.defaultBlockState(), BLOCK_UPDATE_FLAGS);
+                    }
+                }
+            }
         }
     }
 
