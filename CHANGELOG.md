@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-04-05
+
+### Changed
+
+- Update price list: remove Glowstone Dust, add Magma Cream (50g), Blaze Rod (100g), and Wither Skeleton Skull (500g)
+- Restore vanilla witch drops by removing custom loot table overrides
+
+### Fixed
+
+- Prevent market structure from generating underground
+- Fix entity item conversion for 1.20.1 compatibility
+
 ## [0.3.0] - 2026-03-14
 
 ### Added
@@ -50,7 +62,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Multi-loader support: Fabric and NeoForge (Minecraft 1.21.1), Fabric and Forge (Minecraft 1.20.1)
 - Game state persistence using SavedData
 
-[Unreleased]: https://github.com/ksoichiro/HuntersMarket/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/ksoichiro/HuntersMarket/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/ksoichiro/HuntersMarket/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/ksoichiro/HuntersMarket/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/ksoichiro/HuntersMarket/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/ksoichiro/HuntersMarket/releases/tag/v0.1.0
